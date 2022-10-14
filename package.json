@@ -1,0 +1,20 @@
+{
+  "name": "vuepress-theme-less",
+  "version": "1.0.0",
+  "description": "a simple vuepress theme",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs --clean-cache -p 3000",
+    "build": "vuepress build docs"
+  },
+  "keywords": [
+    "vuepress",
+    "theme",
+    "simple"
+  ],
+  "author": "quinlan-l",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.51"
+  }
+}
