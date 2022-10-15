@@ -1,19 +1,19 @@
 ---
 layout: SearchLayout
-siteIdx: 2
+siteIdx: 1
 sites:
   - name: Google
     host: www.google.com
     url: https://www.google.com/search?q=
-  - name: 搜狗
-    host: www.sogou.com
-    url: https://www.sogou.com/web?query=
   - name: Microsoft Bing
     host: www.bing.com
     url: https://www.bing.com/search?q=
   - name: 百度
     host: www.baidu.com
     url: https://www.baidu.com/s?wd=
+  - name: 搜狗
+    host: www.sogou.com
+    url: https://www.sogou.com/web?query=
   - name: Wikipedia 镜像
     host: emw.1369.ml
     url: https://emw.1369.ml/w/index.php?search=
