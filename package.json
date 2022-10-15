@@ -1,7 +1,7 @@
 {
   "name": "vuepress-theme-less",
   "version": "1.0.0",
-  "description": "a simple vuepress theme",
+  "description": "A simple vuepress theme.",
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs --clean-cache -p 3000",
