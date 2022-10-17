@@ -5,10 +5,11 @@ import { useRoute } from 'vue-router'
 import { usePageFrontmatter } from '@vuepress/client'
 import { computed } from 'vue'
 import { DefaultSearchPageFrontmatter } from "../../shared/index.js";
+import HomeFooter from '@theme/HomeFooter.vue'
 
 const frontmatter = usePageFrontmatter<DefaultSearchPageFrontmatter>()
-// get && check site data from front matter.
 
+// get && check site data from front matter.
 const sites = computed(() => {
   let tmpSites = frontmatter.value.sites
   if (tmpSites === null || tmpSites.length == 0) {
@@ -38,35 +39,34 @@ const siteIdx = computed(() => {
 })
 
 
-console.log(sites.value.length)
-
-var prompt = ref(genPrompt(siteIdx.value))
+const prompt = ref(genPrompt(siteIdx.value))
 const keyword = ref("")
 
 function siteChanged(event) {
+  console.log(event.target.value)
   if (event) {
     if (keyword.value == "") {
+
       prompt.value = genPrompt(event.target.value)
     } else {
-      search()
+      search(event.target.value)
     }
   }
 }
 
 function searchOrNot() {
   if (keyword.value != "") {
-    search()
+    var idx = siteIdx.value
+    search(idx)
   }
 }
 
 function genPrompt(idx: number) {
-  console.log(sites.value[idx])
-  return "搜索  用 " + sites.value[idx].host
+  return "在 " + sites.value[idx].host + " 搜索"
 }
-function search() {
-  var idx = siteIdx.value
-  var targetSite = sites.value[idx].url
 
+function search(idx: number) {
+  var targetSite = sites.value[idx].url
   window.open(targetSite + keyword.value.split(' ').join('+'))
 }
 </script>
@@ -78,12 +78,15 @@ function search() {
         <option v-for="(site, idx) in sites" :value="idx"> {{ site.name }} </option>
       </select>
       <div class="sc-input-wrapper">
-        <span class="sc-input-left"></span>
+        <!-- <span class="sc-input-left"></span> -->
         <input class="sc-input" autofocus="true" :placeholder="prompt" v-model="keyword" @keyup.enter="searchOrNot">
         <span class="sc-input-right" @click="searchOrNot"></span>
       </div>
+      
     </div>
   </div>
+  <HomeFooter />
+
 </template>
 
 <style scoped lang="scss">
@@ -98,11 +101,15 @@ $sc-box-height: calc(2 * $sc-input-height + 20px);
 $sc-input-font-size: 18px;
 $sc-select-font-size: calc($sc-input-font-size - 2px);
 
+select:focus {
+  outline: 0;
+}
+
 .sc-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - var(--navbar-height) - calc(var(--navbar-height) / 2) - 10px);
 }
 
 .sc-box-flex {
@@ -121,11 +128,13 @@ $sc-select-font-size: calc($sc-input-font-size - 2px);
   height: $sc-input-height;
   border: 0;
   font-size: $sc-select-font-size;
-  color: #2196f3;
+  color: var(--c-text-accent);
   text-align: center;
+  background-color: rgba(255, 255, 255, 0);
 
   option {
     text-align: center;
+    background-color: rgba(255, 255, 255, 0);
   }
 }
 
@@ -152,6 +161,10 @@ $sc-select-font-size: calc($sc-input-font-size - 2px);
     padding: 0 $sc-input-height;
     font-size: $sc-select-font-size;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    border: solid 1px white;
+    outline: none;
+    color: white;
   }
 
   .sc-input-right {
@@ -165,6 +178,8 @@ $sc-select-font-size: calc($sc-input-font-size - 2px);
     height: 32px;
     cursor: pointer;
   }
+
+
 }
 </style>
 

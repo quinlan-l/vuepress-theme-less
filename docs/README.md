@@ -1,9 +1,4 @@
----
-
-footer: MIT Licensed | Copyright © 2018-present Evan You
----
-# this is a test article
-
+# This is a test article
 
 这是一个极简的 VuePress 主题。
 

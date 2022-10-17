@@ -35,4 +35,6 @@ sites:
   - name: Z-library 镜像
     host: zl.1369.ml
     url: https://zl.1369.ml/s/
+footer: © 2022 <a href="http://github.com/quinlan-l" target="_blank">Quinlan</a>
+footerHtml: true
 ---
